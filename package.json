@@ -1,0 +1,19 @@
+{
+  "name": "baiyangcao.github.io",
+  "version": "1.0.0",
+  "description": "个人主页，没想好怎么搞，先占个坑位吧~~^_^",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baiyangcao/baiyangcao.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/baiyangcao/baiyangcao.github.io/issues"
+  },
+  "homepage": "https://github.com/baiyangcao/baiyangcao.github.io#readme"
+}

@@ -5,9 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{{ site.url }}/node_modules/bootstrap/dist/css/bootstrap.min.css" media="screen">
     <link rel="stylesheet" type="text/css" href="{{ site.url }}/stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="{{ site.url }}/stylesheets/github-light.css" media="screen">
     <link rel="stylesheet" type="text/css" href="{{ site.url }}/stylesheets/print.css" media="print">
+    <script type="text/javascript" src="{{ site.url }}/node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ site.url }}/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -19,8 +22,12 @@
   <body>
     <header>
       <div class="inner">
-        <h1>Baiyangcao</h1>
+        <h1><a href="{{ site.url }}">Baiyangcao</a></h1>
         <h2>A dobe Programmer</h2>
+        <ul class="nav nav-pills">
+          <li><a>CV</a></li>
+          <li><a>Blog</a></li>
+        </ul>
         <a href="https://github.com/baiyangcao" class="button"><small>Follow me on</small> GitHub</a>
       </div>
     </header>

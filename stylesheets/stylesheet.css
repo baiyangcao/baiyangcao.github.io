@@ -624,6 +624,7 @@ form {
   color: #474747;
   text-indent: 6px;
   letter-spacing: -1px;
+  line-height: 2;
 }
 
 #main-content h1:before {

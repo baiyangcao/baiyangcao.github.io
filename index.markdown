@@ -2,20 +2,10 @@
 layout: default
 ---
 
-# Intro
-
- Hi! I'm baiyangcao, come form Affric
-
-# CV
-
- This is my personal speak
-
-# Blog
-
-<ul>
-  {% for post in site.posts %}
-    <li>
-      [{{ post.date | date_to_string }}]<a href="{{ post.url }}">{{ post.title }}</a>
-    </li>
-  {% endfor %}
-</ul>
+{% for post in site.posts %}
+  <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+  <p class="text-muted">{{ post.date | date_to_string }}</p>
+  <p>
+    {{ post.excerpt | strip_html }}
+  </p>
+{% endfor %}

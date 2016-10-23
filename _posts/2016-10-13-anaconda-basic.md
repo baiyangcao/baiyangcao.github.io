@@ -3,6 +3,7 @@ layout: post
 title: Anaconda使用入门
 date: 2016-10-13
 categories: Notes
+excerpt: Anaconda是由Python提供支持的领先的开放数据科学平台。 Anaconda的开源版本是Python和R的高性能分发版本，包括超过100种最流行的用于数据科学的Python，R和Scala包。
 ---
 
 ## 简介

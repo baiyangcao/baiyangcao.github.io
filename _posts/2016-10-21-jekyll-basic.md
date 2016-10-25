@@ -3,6 +3,7 @@ layout: post
 title: "Jekyll 使用入门"
 date: 2016-10-21
 categories: Notes
+tags: jekyll Ruby
 ---
 
 Jekyll 是一个网站生成工具，可以用来将带有一定格式的文本（如：MarkDown）转换成静态的HTML页面，

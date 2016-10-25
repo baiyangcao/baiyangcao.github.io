@@ -3,6 +3,7 @@ layout: post
 title: requests快速入门
 date: 2016-10-17
 categories: Notes
+tags: Python
 excerpt: Requests 是唯一的一个非转基因的 Python HTTP 库，人类可以安全享用。Requests 允许你发送纯天然，植物饲养的 HTTP/1.1 请求，无需手工劳动。
 ---
 

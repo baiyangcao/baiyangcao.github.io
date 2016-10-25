@@ -3,6 +3,7 @@ layout: post
 title: "Python连接SQL Server数据库 - pymssql使用基础"
 date: 2016-10-12
 categories: Notes
+tags: [Python, SQL Server]
 excerpt: pymssql是一个基于FreeTDS的简单Python数据库接口，提供符合 Python DB-API (PEP-249) 标准的 Microsoft SQL Server 数据接口。
 ---
 

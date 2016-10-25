@@ -3,6 +3,7 @@ layout: post
 title: "argparse 使用指南"
 date: 2016-10-18
 categories: Notes
+tags: Python
 ---
 
 argparse是Python标准库中推荐使用的命令行解析模块，

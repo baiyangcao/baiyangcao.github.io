@@ -3,6 +3,7 @@ layout: post
 title: 利用Github Pages建立仓库“门面”
 date: 2016-10-14
 categories: Notes
+tags: Github
 excerpt: Github Pages 是一个静态网站托管服务，用来从你的Github仓库中直接发布个人、组织或项目的网站页面。
 ---
 

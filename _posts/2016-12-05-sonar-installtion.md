@@ -1,7 +1,7 @@
 ---
 layout: post
 titil: SonarQube安装
-date: 201-12-05
+date: 2016-12-05
 categories: Notes
 tags: SonarQube Oracle
 ---

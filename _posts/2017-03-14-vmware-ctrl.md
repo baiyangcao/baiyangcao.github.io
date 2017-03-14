@@ -4,6 +4,7 @@ title: VMWare虚拟机中Ctrl键锁定、粘滞
 date: 2017-03-14
 categories: Notes
 tags: VMWare
+excerpt: 最近在使用虚拟机时，总是遇到`Ctrl`键被按下的状态...
 ---
 
 最近在使用虚拟机时，总是遇到`Ctrl`键被按下的状态，就是在按下`Space`之后会切换输入法，

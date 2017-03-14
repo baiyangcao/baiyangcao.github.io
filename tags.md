@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: blog
 ---
 
 {% for tag in site.tags %}

@@ -3,7 +3,7 @@ layout: post
 title: Github Pages(jekyll)文章标题显示为空
 date: 2017-03-14
 categories: Notes
-tags: GitHub jekyll MarkDown
+tags: Github jekyll MarkDown
 ---
 
 今天将写完的文章发布到Github Pages上的时候，出现了没有标题的情况，如下图：

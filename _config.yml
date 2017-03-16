@@ -4,4 +4,6 @@ markdown: kramdown
 include: ["node_modules/"]
 exclude: ["package.json", "README.md", "params.json"]
 
-host: 0.0.0.0
+host: localhost
+
+highlighter: rouge

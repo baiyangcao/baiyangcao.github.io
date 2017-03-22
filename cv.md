@@ -19,11 +19,20 @@ layout: cv
 2013.07-2017.05 **武大吉奥信息技术有限公司**
 ```
   
-在该公司主要负责沈阳“一张图”电子政务平台相关功能模块的开发和维护功能，期间做过的工作有：
-1. 维护MSSQL+ASP.NET开发的业务审批及OA系统，利用UCML工作流引擎完成相关新流程的开发及现有流程的维护
-2. 开发WebService后台服务接口为移动办公APP提供后台服务，并基于Oracle+ASP.NET+jQuery EasyUI开发后台数据管理系统
-3. 使用ASP.NET Web API技术开发数据导出接口，在现有系统中嵌入数据导出模块
-4. 维护基于ArcGIS API For Flex开发的图形端程序
+在该公司主要负责沈阳“一张图”电子政务平台相关功能模块的开发和维护功能，以及后期不动产统一登记平台相关的开发。
+
+<div class="alert alert-info">沈阳“一张图”电子政务平台</div>
+
+ - 维护MSSQL+ASP.NET开发的业务审批及OA系统，利用UCML工作流引擎完成相关新流程的开发及现有流程的维护
+ - 开发WebService后台服务接口为移动办公APP提供后台服务，并基于Oracle+ASP.NET+jQuery EasyUI开发后台数据管理系统
+ - 使用ASP.NET Web API技术开发数据导出接口，在现有系统中嵌入数据导出模块
+ - 维护基于ArcGIS API For Flex开发的图形端程序  
+  
+<div class="alert alert-info">不动产统一登记平台</div>
+
+ - 利用ETL工具Kettel抽取“一张图”数据[SQL Server]到不动产登记平台[Oracle]
+ - 基于不动产平台开发相关的流程及表单
+ - Oracle数据库中制作触发器、存储过程、数据库连接用于与中间库数据之间的交互
 
 # 教育经历
 

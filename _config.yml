@@ -7,3 +7,6 @@ exclude: ["package.json", "README.md", "params.json"]
 host: localhost
 
 highlighter: rouge
+
+gems: [jekyll-paginate]
+paginate: 5

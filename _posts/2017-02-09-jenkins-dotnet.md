@@ -3,7 +3,7 @@ layout: post
 title: Jenkins与.NET
 date: 2017-02-09
 categories: Notes
-tags: jenkins .NET C#
+tags: Jenkins .NET C#
 ---
 
 本文讲述如何在Jenkins中构建、测试、部署.NET项目

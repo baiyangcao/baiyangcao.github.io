@@ -3,7 +3,7 @@ layout: post
 title: AutoHotKey快速入门
 date: 2016-10-29
 categories: Notes
-tags: autohotkey
+tags: Autohotkey
 ---
 
 AutoHotKey 是一个免费的键盘宏程序，可以用于配置键盘快捷键、鼠标事件

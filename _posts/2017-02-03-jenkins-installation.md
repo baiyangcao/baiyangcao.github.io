@@ -3,7 +3,7 @@ layout: post
 title: Jenkins 安装
 date: 2017-02-03
 categories: Notes
-tags: jenkins
+tags: Jenkins
 ---
 
 ## 安装

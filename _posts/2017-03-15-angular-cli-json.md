@@ -3,7 +3,7 @@ layout: post
 title: Angular-Cli中引用第三方库
 date: 2017-03-15
 categories: Notes
-tags: angular
+tags: Angular
 ---
 
 最近在学习angular(AngularJS 2)，根据教程使用angular-cli新建项目，

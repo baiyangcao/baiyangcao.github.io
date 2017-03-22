@@ -3,7 +3,7 @@ layout: post
 title: GitHub针对同一版本库创建多个Pull Request
 date: 2017-03-20
 categories: Notes
-tag: Github Git
+tags: Github Git
 excerpt: 近日在对某个翻译文档库进行 Pull Request 时，经库主提醒，对于不同章节的翻译需要创建不同的 Pull Request，否则库主在合并的时候不好合并。
 ---
 

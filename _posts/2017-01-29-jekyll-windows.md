@@ -3,7 +3,7 @@ layout: post
 title: Windows下安装Jekyll
 date: 2017-01-29
 categories: Notes
-tags: jekyll Github
+tags: Jekyll Github Ruby
 ---
 
 一直以来使用jekyll更新文章时都是在Windows下的Linux虚拟机内构建，测试，

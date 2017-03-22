@@ -3,7 +3,7 @@ layout: post
 title: Pandoc中的Markdown语法
 date: 2016-10-16
 categories: Notes
-tags: MarkDown
+tags: Markdown
 excerpt: Pandoc是由John MacFarlane开发的标记语言转换工具，可实现不同标记语言间的格式转换，堪称该领域中的“瑞士军刀”。
 ---
 

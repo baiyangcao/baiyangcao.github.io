@@ -7,3 +7,15 @@ layout: blog
 <div class="post">
     {{ content }}
 </div>
+
+<nav aria-label="Page navigation">
+  <ul class="pager">
+    {% if page.previous %}
+        <li class="previous"><a href="{{ page.previous.url }}"><span aria-hidden="true">&larr;</span> {{ page.previous.title | truncate: 20, '...' }}</a></li>
+    {% endif %}
+
+    {% if page.next %}
+        <li class="next"><a href="{{ page.next.url }}">{{ page.next.title | truncate: 20, '...' }} <span aria-hidden="true">&rarr;</span></a></li>
+    {% endif %}
+  </ul>
+</nav>

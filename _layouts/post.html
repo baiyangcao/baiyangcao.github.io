@@ -1,6 +1,12 @@
 ---
 layout: blog
 ---
+
+<ol class="breadcrumb">
+    <li><a href="{{ site.url }}">首页</a></li>
+    <li class="active">{{ page.title | truncate: 20, '...' }}</li>
+</ol>
+
 <h1>{{ page.title }}</h1>
 <p class="meta">{{ page.date | date_to_string }}</p>
 

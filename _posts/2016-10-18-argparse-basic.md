@@ -4,6 +4,7 @@ title: "argparse 使用指南"
 date: 2016-10-18
 categories: Notes
 tags: Python
+syntax: colorful
 ---
 
 argparse是Python标准库中推荐使用的命令行解析模块，
@@ -20,13 +21,15 @@ argparse是Python标准库中推荐使用的命令行解析模块，
 
 首先从一个不带任何参数的脚本开始，新建一个脚本，输入以下内容：
 
-```python
+{% highlight python %}
 # argtest1.py
 
 import argparse
 parser = argparse.ArgumentParser()
 parser.parse_args()
+{% endhighlight %}
 
+{% highlight Shell Session %}
 # ----------------
 # 测试脚本
 # ----------------
@@ -50,7 +53,7 @@ argtest1.py: error: unrecognized arguments: --verbose
 $ python argtest1 foo
 usage: argtest1.py [-h]
 argtest1.py: error: unrecognized arguments: foo
-```
+{% endhighlight %}
 
 从上面可以看出，argparse模块提供了两个个基本功能：
 
@@ -64,11 +67,11 @@ argtest1.py: error: unrecognized arguments: foo
 为命令行工具添加参数可以使用`ArgumentParser.add_argument`方法，
 然后可以在脚本中调用`ArgumentParser.parse_args`方法获取脚本执行时设置的参数值
 
-```python
+{% highlight python %}
 ArgumentParser.add_argument(name or flags...
   [, action][, nargs][, const][, default][, type]
   [, choices][, required][, help][, metavar][, dest]) 
-```
+{% endhighlight %}
 
 函数原型如上，参数含义分别为（其中加粗的参数为将会涉及到的）：
 
@@ -88,7 +91,7 @@ ArgumentParser.add_argument(name or flags...
 
 ### 位置参数
 
-```python
+{% highlight python %}
 # argtest2.py
 
 import argparse
@@ -97,7 +100,9 @@ parser = argparse.ArgumentParser()
 parser.add_argument('square', help='计算给定值的平方值', type=int)
 args = parser.parse_args()
 print(args.square**2)
+{% endhighlight %}
 
+{% highlight Shell Session %}
 # ----------------
 # 测试脚本
 # ----------------
@@ -118,11 +123,11 @@ $ python argtest2.py 4
 $ python argtest2.py four
 usage: argtest2.py [-h] square
 argtest2.py: error: argument square: invalid int value: 'four'
-```
+{% endhighlight %}
 
 ### 可选参数
 
-```python
+{% highlight python %}
 # argtest3.py
 
 import argparse
@@ -133,7 +138,9 @@ parser.add_argument('-v', '--verbose',
 args = parser.parse_args()
 if args.verbose:
   print('可见性打开')
+{% endhighlight %}
 
+{% highlight Shell Session %}
 # ----------------
 # 测试脚本
 # ----------------
@@ -141,14 +148,14 @@ $ python argtest3.py -v
 可见性打开
 
 $ python argtest3.py
-```
+{% endhighlight %}
 
  - 添加可选参数的时候，可以提供一个短参数选项(-v)和一个长参数选项(--verbose)，也可以省略短参数
  - `action='store_true`表示参数值储存为True，即在命令行中提供参数时`parser.parse_args`获取的参数值为True，否则为False
 
 ### 同时使用位置参数、可选参数
 
-```python
+{% highlight python %}
 # argtest4.py
 
 import argparse
@@ -166,7 +173,9 @@ elif args.verbose >=1:
   print('{}^2 = {}'.format(args.square, answer))
 else:
   print(answer)
+{% endhighlight %}
 
+{% highlight Shell Session %}
 # ----------------
 # 测试脚本
 # ----------------
@@ -193,14 +202,14 @@ $ python argtest4.py -v 1 4
 
 $ python argtest4.py -v 2 4
 4的平方值是16
-```
+{% endhighlight %}
 
 ## 冲突选项
 
 有些选项的作用相反，不可以同时使用，为了加上这样的限制，
 可以使用`ArgumentParser.add_mutually_exclusive_group`方法
 
-```python
+{% highlight python %}
 # argtest5.py
 
 import argparse
@@ -220,7 +229,9 @@ elif args.verbose:
     print('{}的{}次幂等于{}'.format(args.x, args.y, answer))
 else:
     print('{}^{} = {}'.format(args.x, args.y, answer))
+{% endhighlight %}
 
+{% highlight Shell Session %}
 # ----------------
 # 测试脚本
 # ----------------
@@ -251,6 +262,6 @@ $ python argtest5.py 4 2 -v
 $ python argtest5.py 4 2 -qv
 usage: argtest5.py [-h] [-v | -q] x y
 argtest5.py: error: argument -v/--verbose: not allowed with argument -q/--quiet
-```
+{% endhighlight %}
 
 > 参考链接： <https://docs.python.org/3/howto/argparse.html>

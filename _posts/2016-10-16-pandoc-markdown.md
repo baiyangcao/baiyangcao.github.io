@@ -24,35 +24,41 @@ Pandoc所支持的语法各种对标准Markdown语法的扩展可以通过在格
 段落是指一个或多个空行之后的多行文本，文本中的换行都被视作空格，
 如若要输出换行，则应在行末添加两个或多个空格
 
-> **注：** 段落之后也应加一个空行，以区分段落和其他部分，如：列表  
-> 
-> 如下Markdown语法
-> ```
-> 这是一个段落
->  - 列表项1
->  - 列表项2
-> ```
-> 翻译成HTML如下：
-> ```
-> 这是一个段落  - 列表项1  - 列表项2
-> ```
-> 
-> 若要正确的显示列表应在段落后添加一个空行，如下：
-> ```
-> 这是一个段落
-> 
->  - 列表项1
->  - 列表项2
-> ```
+<blockquote>
+**注：** 段落之后也应加一个空行，以区分段落和其他部分，如：列表  
+
+如下Markdown语法
+
+{% highlight Markdown %}
+这是一个段落
+ - 列表项1
+ - 列表项2
+{% endhighlight %}
+
+翻译成HTML如下：
+
+{% highlight Markdown %}
+这是一个段落  - 列表项1  - 列表项2
+{% endhighlight %}
+
+若要正确的显示列表应在段落后添加一个空行，如下：
+
+{% highlight Markdown %}
+这是一个段落
+ 
+ - 列表项1
+ - 列表项2
+{% endhighlight %}
+</blockquote>
 
 #### Extension: `escaped_line_breaks`
 
 也可以通过在行末添加一个反斜线`\`来换行，如：
 
-```
+{% highlight Markdown %}
 这是第一行\
 这是第二行
-```
+{% endhighlight %}
 
 > **注：** 这是在表格单元格中添加换行的唯一形式
 
@@ -65,13 +71,13 @@ Pandoc中支持两种标题语法：Setext和ATX
 setext风格标题是一行文本下跟一行`=`符号（表示一级标题）和`-`符号（表示二级标题），
 文本中可以包含如*斜体*、**加粗**等行内格式
 
-```
+{% highlight Markdown %}
 一级标题
 =======
 
 二级标题
 -------
-```
+{% endhighlight %}
 
 ### ATX风格语法
 
@@ -86,9 +92,9 @@ ATX风格标题就是我们通常所用的Markdown标题语法，在行首添加
 
 可以通过在标题行末添加如下形式的标识符来为标题添加属性：
 
-```
+{% highlight Markdown %}
 {#identifier .class .class key=value key=value}
-```
+{% endhighlight %}
 
 `identifier`会被编译成html文档中的`id`属性，
 `class`会被合并成html文档中的`class`属性
@@ -118,24 +124,24 @@ Pandoc默认每个标题都定义了引用链接，故对于标题`# 标题1`，
 块引用是指一个或多个段落或其他块元素（如列表或标题），每一行以一个`>`符号和一个可选的空格开头
 （`>`符号并不需要在行首，但是不可缩进超过三个空格）
 
-```
+{% highlight Markdown %}
 > 块引用
 > 段落
 > 
 > 1. 列表1
 > 2. 列表2 
-```
+{% endhighlight %}
 
 块引用并不是每一行都需要以`> `符号开头，只需在每一个区域的首行添加`> `即可，
 如下文本和上述的文本有相同的效果
 
-```
+{% highlight Markdown %}
 > 块引用
 段落
 
 > 1. 列表1
 2. 列表2 
-```
+{% endhighlight %}
 
 > **注**
 > 
@@ -155,7 +161,7 @@ Pandoc默认每个标题都定义了引用链接，故对于标题`# 标题1`，
 由四个空格或一个tab缩进的文本取做代码块，区块中的特殊字符、空格和换行都会被保留，
 而缩进的空格和tab会在输出中移除，但在代码块中的空行不必缩进
 
-```
+{% highlight Markdown %}
     using System;
 
     public class Program
@@ -165,7 +171,7 @@ Pandoc默认每个标题都定义了引用链接，故对于标题`# 标题1`，
             Console.Write('Hello World!');
         }
     }
-```
+{% endhighlight %}
 
 ### 围栏式代码块
 
@@ -175,11 +181,13 @@ Pandoc默认每个标题都定义了引用链接，故对于标题`# 标题1`，
 代码块以三个或三个以上的`~`符号行开始，以等于或多于开始行`~`个数符号行结束，
 若是代码块中含有`~`，只需使开始行和结束行中的`~`符号个数多于代码块中的即可
 
+{% highlight Markdown %}
     ~~~~~
     ~~~~
     code here
     ~~~~
     ~~~~~~
+{% endhighlight %}
 
 #### Extension: `backtick_code_blocks`
 
@@ -189,6 +197,7 @@ Pandoc默认每个标题都定义了引用链接，故对于标题`# 标题1`，
 
 与标题标识符相同，在波浪线或反引号代码块的首行添加属性即可，如下：
 
+{% highlight Markdown %}
     ~~~ { #id .cs .numberLines }
     using System;
     
@@ -200,11 +209,13 @@ Pandoc默认每个标题都定义了引用链接，故对于标题`# 标题1`，
         }
     }
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+{% endhighlight %}
 
 如上代码中添加的`cs`类可以用于代码HTML和LaTex输出的代码高亮，
 pandoc所支持高亮的语言可以通过在命令行中输入`pandoc --version`查看，
 除了上述方式设置代码块的高亮语言，也可通过如下方式设置
 
+{% highlight Markdown %}
     ```cs
     using System;
     
@@ -216,6 +227,7 @@ pandoc所支持高亮的语言可以通过在命令行中输入`pandoc --version
         }
     }
     ```
+{% endhighlight %}
 
 ## 行文本块
 
@@ -224,13 +236,13 @@ pandoc所支持高亮的语言可以通过在命令行中输入`pandoc --version
 行文本块是指一系列由`|`和一个空格开头的行，在输出中可以保留空格和换行，
 不会像段落那样将换行符转换成空格，可用于诗文和地址的排版
 
-```
+{% highlight Markdown %}
 | 咏梅
 | 啊！梅花
 |   红
 | 
 |       霜
-```
+{% endhighlight %}
 
 ## 列表
 
@@ -238,29 +250,29 @@ pandoc所支持高亮的语言可以通过在命令行中输入`pandoc --version
 
 列表项以星号`*`、加号`+`或减号`-`开头，如下：
 
-```
+{% highlight Markdown %}
  * 列表项1
  * 列表项2
  * 列表项3
-```
+{% endhighlight %}
 
 这样输出的列表是“紧凑”型的列表，若是要输出“宽松”型列表，
 可在列表项之间添加空行即可
 
-```
+{% highlight Markdown %}
  * 列表项1
 
  * 列表项2
 
  * 列表项3
-```
+{% endhighlight %}
 
 `四空格原则`
 
 一个列表项里可以包含多个段落或其他块级别内容，
 但是其次的段落都应该以一个空行和四个空格缩进开始
 
-```
+{% highlight Markdown %}
   * 列表项1 第一段落
 
     列表项1 第二段落
@@ -268,26 +280,26 @@ pandoc所支持高亮的语言可以通过在命令行中输入`pandoc --version
   * 列表项2 第一段落
 
         { code }
-```
+{% endhighlight %}
 
 列表中可以嵌套列表，每一层嵌套列表都需要添加四个空格或一个tab缩进，
 并且每一层应该使用不同的起始符
 
-```
+{% highlight Markdown %}
  * 1.1
      + 1.1.1
         - 1.1.1.1
         - 1.1.1.2
      + 1.1.2
  * 1.2
-```
+{% endhighlight %}
 
 ### 有序列表
 
 有序列表项以数字、一个点`.`和一个空格开头，
 并且取第一个列表项数字为基准，依次向下排，故下面两个列表是一样的
 
-```
+{% highlight Markdown %}
 **列表1**
 
  1. 一
@@ -302,7 +314,7 @@ pandoc所支持高亮的语言可以通过在命令行中输入`pandoc --version
  5. 二
  9. 三
 
-```
+{% endhighlight %}
 
 #### Extension: `fancy_lists`
 
@@ -313,28 +325,28 @@ Pandoc中还支持大小写字母、罗马数字，或用括号、右括号标�
   
 `fancy_lists`扩展还支持使用`#`来代替数字
 
-```
+{% highlight Markdown %}
  #. 列表项1
  #. 列表项2
-```
+{% endhighlight %}
 
 #### Extension: `startnum`
 
 Pandoc支持自定义的列表起始数字，而且会在每次使用不同的列表标识便重新开始一个新列表，
 如下会创建三个列表
 
-```
+{% highlight Markdown %}
  (3) 列表1项1
  (7) 列表1项2
   1. 列表2项1
   *  列表2项1 
-```
+{% endhighlight %}
 
 ### 定义列表
 
 #### Extension: `definition_lists`
 
-```
+{% highlight Markdown %}
 名词1
 
 :    解释1
@@ -343,7 +355,7 @@ Pandoc支持自定义的列表起始数字，而且会在每次使用不同的�
     名词
 
 :   解释2
-```
+{% endhighlight %}
 
 定义列表形式如上，术语独占一行，其后可以跟一个空行，然后是一个或多个定义，
 每一个定义以`:`和`~`开头，可以缩进一到两个空格  
@@ -358,7 +370,7 @@ Pandoc支持自定义的列表起始数字，而且会在每次使用不同的�
 特殊的列表标识符`@`用于连续编号列表，整个文档中的`@`符号从`1`开始编号，
 依次类推，如下的前三个`@`会分别替换为`1`, `2`, `3`
 
-```
+{% highlight Markdown %}
 (@)  My first example will be numbered (1).
 (@)  My second example will be numbered (2).
 
@@ -370,7 +382,7 @@ Explanation of examples.
 (@good)  This is a good example.
 
 As (@good) illustrates, ...
-```
+{% endhighlight %}
 
 `@`后可以加上一个字符串来表示一个标签，用于在其他地方引用这个序号，
 如上例中的`@good`会被`4`来替换
@@ -382,18 +394,18 @@ As (@good) illustrates, ...
 
 ## 截断列表
 
-```
+{% highlight Markdown %}
  1. 列表1项1
  2. 列表1项2
 
  1. 列表2项1
  2. 列表2项2
-```
+{% endhighlight %}
 
 如上想要输出两个列表，却会输出一个有四项的列表，
 要想“截断”列表1，则可在两个列表之间插入一行没有缩进的行，如HTML注释
 
-```
+{% highlight Markdown %}
  1. 列表1项1
  2. 列表1项2
 
@@ -401,7 +413,7 @@ As (@good) illustrates, ...
 
  1. 列表2项1
  2. 列表2项2
-```
+{% endhighlight %}
 
 ## 水平线
 
@@ -419,7 +431,7 @@ Pandoc中支持`simple_tables`, `multiline_tables`, `grid_tables`和`pipe_tables
 
 简单的表格形如下
 
-```
+{% highlight Markdown %}
   Right     Left     Center     Default
 -------     ------ ----------   -------
      12     12        12            12
@@ -427,7 +439,7 @@ Pandoc中支持`simple_tables`, `multiline_tables`, `grid_tables`和`pipe_tables
       1     1          1             1
 
 Table:  简单表格实例
-```
+{% endhighlight %}
 
 列首行和表格中的每一行都应独占一行，
 列对齐方式由列头和其下虚线行的相对位置决定：
@@ -447,7 +459,7 @@ Table:  简单表格实例
 跨行表格允许列首行和表格中的行可以分多行撰写，但是不支持单元格的跨行和跨列，
 跨行表格必须以一行虚线行开始，以一行虚线行和一个空行结束，行与行之间应有一个空行
 
-```
+{% highlight Markdown %}
 -------------------------------------------------------------
  Centered   Default           Right Left
   Header    Aligned         Aligned Aligned
@@ -462,7 +474,7 @@ Table:  简单表格实例
 
 Table: 这个是标题
 也能跨行的啦~~
-```
+{% endhighlight %}
 
 跨行表格的列首行也可以被忽略，
 也可以只包含一行，但是这一行后必须跟着一个空行
@@ -473,7 +485,7 @@ Table: 这个是标题
 网格表格中的单元格可以包含任意区块（段落、代码块、列表等），
 但对其方式和单元格的跨行跨列都是不支持滴~
 
-```
+{% highlight Markdown %}
 : 网格表格样例
 
 +---------------+---------------+--------------------+
@@ -485,11 +497,11 @@ Table: 这个是标题
 | Oranges       | $2.10         | - cures scurvy     |
 |               |               | - tasty            |
 +---------------+---------------+--------------------+
-```
+{% endhighlight %}
 
 #### Extension: `pipe_tables`
 
-```
+{% highlight Markdown %}
 | Right | Left | Default | Center |
 |------:|:-----|---------|:------:|
 |   12  |  12  |    12   |    12  |
@@ -497,7 +509,7 @@ Table: 这个是标题
 |    1  |    1 |     1   |     1  |
 
   : `pipe_tables`表格样例
-```
+{% endhighlight %}
 
 `pipe_tables`每一列之间用竖线`|`隔开，列首行和其余行之间用虚线行隔开，
 虚线行中用冒号`:`来决定列的对其方式，
@@ -505,13 +517,13 @@ Table: 这个是标题
 但是`pipe_tables`的列首行不能忽略，要是想要生成没有列首的表格，
 只要在列首行的单元格置空便可
 
-```
+{% highlight Markdown %}
  | 
 -----|-----:
 苹果|2.05
 梨 |1.37
 橘子 |3.09
-```
+{% endhighlight %}
 
 > **注：** `pipe_tables`中的单元格不可包含如段落、列表等区块元素
 
@@ -522,9 +534,9 @@ Table: 这个是标题
 除了在代码块和行内代码中，反斜线后的任何字符和空格都会按照字面输出，
 Markdown语法中能被转义的字符如下
 
-```
+{% highlight Markdown %}
 \`*_{}[]()>#+-.!
-```
+{% endhighlight %}
 
 ## 行内格式
 
@@ -533,16 +545,16 @@ Markdown语法中能被转义的字符如下
 用一对`*`或`_`包裹起来的文本会被输出为斜体，
 而用一对`**`或`__`包裹起来的文本会被输出为加粗
 
-```
+{% highlight Markdown %}
 强调文本：这里是*斜体*,这里是**加粗**
-```
+{% endhighlight %}
 
 若是`*`或`_`符号前后有空格，或用`\`转义，
 则不会输出为斜体或加粗
 
-```
+{% highlight Markdown %}
 这里 * 不会被翻译成斜体 *, 而且 \*这里也不会\*.
-```
+{% endhighlight %}
 
 #### Extension: `intraword_underscores`
 
@@ -555,9 +567,9 @@ Markdown语法中能被转义的字符如下
 
 一对`~~`所包裹的文本会添加一条删除线
 
-```
+{% highlight Markdown %}
 ~~这个文本被删除了~~
-```
+{% endhighlight %}
 
 ### 上标和下标
 
@@ -566,11 +578,11 @@ Markdown语法中能被转义的字符如下
 上标可以通过一对`^`标识，而下标可以通过一对`~`标识，
 若上下标中包含空格，可以通过`\`转义空格
 
-```
+{% highlight Markdown %}
 H~2~O
 2^10^ = 1024
 P~a\ cat~
-```
+{% endhighlight %}
 
 ### 行内代码块
 
@@ -578,19 +590,19 @@ P~a\ cat~
 而行内代码块中含有反引号`` ` ``，可以用双反引号包裹代码块，
 但是行内代码块中的转义符`\`没有转义的作用
 
-```
+{% highlight Markdown %}
 这是一个`行内代码块`
 这是一个行内代码块的反引号`` ` ``
 这是一个行内代码块的反斜线`\`
-```
+{% endhighlight %}
 
 #### Extension: `inline_code_attributes`
 
 与[代码块](#extension-fenced_code_attributes)一样，行内代码块后写可以添加属性，形式如下：
 
-```
+{% highlight Markdown %}
 `行内代码块`{ #identifier .class key=value }
-```
+{% endhighlight %}
 
 ## HTML代码
 
@@ -608,26 +620,26 @@ P~a\ cat~
 
 如果用尖括号包裹一个URL或email地址，就会输出一个链接：
 
-```
+{% highlight Markdown %}
 <http://google.com>
 <sam@green.eggs.ham>
-```
+{% endhighlight %}
 
 ### 行内链接
 
 行内链接文本由方括号`[]`包裹，其后跟URL链接用圆括号`()`包裹，
 圆括号内的URL后可以用双引号`"`包裹一串字符串作为链接标题，
 
-```
+{% highlight Markdown %}
 这是 [行内链接](链接地址), 并且这是 [一个
 带有标题的行内链接](http://fsf.org "链接标题，鼠标悬停时显示")
-```
+{% endhighlight %}
 
 Email的链接地址应该跟在`mailto`后面
 
-```
+{% highlight Markdown %}
 [给我邮件哦~~](mailto:sam@green.eggs.ham)
-```
+{% endhighlight %}
 
 ### 引用链接
 
@@ -636,31 +648,31 @@ Email的链接地址应该跟在`mailto`后面
 \
 链接由方括号`[]`包裹的连接文本和由方括号`[]`包裹的连接标签组成
 
-```
+{% highlight Markdown %}
 [链接文本1][Label1]
 [链接文本2][Label2]
-```
+{% endhighlight %}
 
 链接定义由方括号`[]`包裹的链接标签、冒号、空格和
 链接地址（可以用尖括号`<>`包裹）组成，
 其后还可以跟空格+链接标题，由单引号`'`, `"`或圆括号`()`包裹
 
-```
+{% highlight Markdown %}
 [Label1]: http://www.baidu.com "百度一下"
 [Label2]: http://www.google.com
     "谷歌一下" 
-```
+{% endhighlight %}
 
 > **注：** 链接标签不区分大小写
 
 **隐式引用连接**链接中的连接标签部分为空，
 而链接定义中的链接标签由链接文本替换
 
-```
+{% highlight Markdown %}
 详情见[官方网站][]
 
 [官方网站]: http://guanfangwangzhan.com
-```
+{% endhighlight %}
 
 #### Extension: `shortcut_reference_links`
 
@@ -671,54 +683,54 @@ Email的链接地址应该跟在`mailto`后面
 可以使用identifier来链接到文档中的其他章节，
 链接地址形如`#identifier`
 
-```
+{% highlight Markdown %}
 见[标题](#标题)
 
 见[标题]
 [标题]: #标题
-```
+{% endhighlight %}
 
 ### 图片
 
 如果链接前添加`!`，链接则会被作为图片处理，
 而链接文本则会被作为图片的`alt`属性处理
 
-```
+{% highlight Markdown %}
 ![月亮](月亮.jpg "十五的月亮")
-```
+{% endhighlight %}
 
 #### Extension: `implicit_figures`
 
 若是图片作为一个独自的段落存在，则图片的连接文本会被当做标题处理
 
-```
+{% highlight Markdown %}
 ![这是标题](图片地址.png)
-```
+{% endhighlight %}
 
 但若是想要将图片作为一般的行内图片处理，只需确保图片不是当前行的唯一内容即可，
 比如在行末添加一个反斜线
 
-```
+{% highlight Markdown %}
 ![这个就不是标题了~~](图片地址.png)\
-```
+{% endhighlight %}
 
 #### Extension: `link_attributes`
 
 链接或图片后可以像其他元素一样添加属性
 `{ #identifier .class key=value }`
 
-```
+{% highlight Markdown %}
 行内图片 ![图片](地址.png){ #id .class width=20 }
 和一个带属性的[引用链接]
 
 [引用链接]: http://www.baidu.com "百度一下" { #id2 .class key=value }
-```
+{% endhighlight %}
 
 ## 脚注
 
 #### Extension: `footnotes`
 
-```
+{% highlight Markdown %}
 Here is a footnote reference,[^1] and another.[^longnote]
 
 [^1]: Here is the footnote.
@@ -736,7 +748,7 @@ belong to the previous footnote.
 
 This paragraph won't be part of the note, because it
 isn't indented.
-```
+{% endhighlight %}
 
 脚注的identifier不可包含空格，tab或换行，
 在输出中脚注会按照顺序编号，如上例中的`[^longnote]`会被编号`2`，

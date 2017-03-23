@@ -39,7 +39,7 @@ Graphviz是来自贝尔实验室的一个图形可视化绘制工具，
 下面开始绘制第一个图形，新建一个文本文档`graph1.gv`，
 输入如下内容：
 
-```
+{% highlight C %}
 // graph1.gv
 digraph G {
     main -> init;
@@ -51,13 +51,13 @@ digraph G {
     main -> printf;
     execute -> compare;
 }
-```
+{% endhighlight %}
 
 然后在命令行界面中执行命令，生成图片：
 
-```
+{% highlight shell %}
 > dot -Tpng graph1.gv -o graph1.png
-```
+{% endhighlight %}
 
 生成图片如下：
 
@@ -71,7 +71,7 @@ digraph G {
 
 我们可以通过设置图、节点、边的属性来美化图形，如下：
 
-```
+{% highlight c %}
 // graph2.gv
 digraph G {
     size = "4,16";  // 设置图属性
@@ -92,7 +92,7 @@ digraph G {
     打破环路 -> 分配节点等级 [label="下一步"];   // 设置当前线的属性
     分配节点等级 -> 同级节点排序 -> 确定X坐标;
 }
-```
+{% endhighlight %}
 
 生成图片如下：
 

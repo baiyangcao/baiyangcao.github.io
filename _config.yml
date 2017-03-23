@@ -2,7 +2,7 @@ name: baiyangcao
 markdown: kramdown
 
 include: ["node_modules/"]
-exclude: ["package.json", "README.md", "params.json"]
+exclude: ["package.json", "README.md", "params.json", "stylesheets/syntax/"]
 
 host: localhost
 

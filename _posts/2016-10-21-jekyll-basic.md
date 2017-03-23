@@ -18,68 +18,70 @@ Jekyll 是一个网站生成工具，可以用来将带有一定格式的文本�
 
  - Ruby
  - RubyGems
-   ```
+   {% highlight shell %}
    $ sudo yum install ruby
-   ```
+   {% endhighlight %}
  - NodeJS，或者其他JavaScript运行环境
-   ```
+   {% highlight shell %}
    $ curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
    $ yum -y install nodejs
-   ```
+   {% endhighlight %}
  - Python2.7 （Jekyll2 或更早版本需要，Linux一般自带）
 
 然后安装 Jekyll：
 
-```
+{% highlight shell %}
 $ gem install jekyll
-```
+{% endhighlight %}
 
-> 注意：
-> 小白在安装时遇到以下报错：
-> ```
-> Building native extensions.  This could take a while...
-> ERROR:  Error installing jekyll:
->     ERROR: Failed to build gem native extension.
-> 
->     /usr/bin/ruby extconf.rb
-> mkmf.rb can't find header files for ruby at /usr/share/include/ruby.h
-> 
-> Gem files will remain installed in /home/bai/.gem/ruby/gems/ffi-1.9.14 for inspection.
-> Results logged to /home/bai/.gem/ruby/gems/ffi-1.9.14/ext/ffi_c/gem_make.out
-> ```
-> 原来还需要安装 ruby development软件包，执行 `sudo yum install ruby-devel`
+<blockquote>
+注意：
+小白在安装时遇到以下报错：
+{% highlight shell %}
+Building native extensions.  This could take a while...
+ERROR:  Error installing jekyll:
+    ERROR: Failed to build gem native extension.
+
+    /usr/bin/ruby extconf.rb
+mkmf.rb can't find header files for ruby at /usr/share/include/ruby.h
+
+Gem files will remain installed in /home/bai/.gem/ruby/gems/ffi-1.9.14 for inspection.
+Results logged to /home/bai/.gem/ruby/gems/ffi-1.9.14/ext/ffi_c/gem_make.out
+{% endhighlight %}
+原来还需要安装 ruby development软件包，执行 `sudo yum install ruby-devel`
+</blockquote>
 
 ## 基本使用
 
 新建一个最简单的示例网站
 
-```
+{% highlight shell %}
 $ jekyll new myblog
-```
+{% endhighlight %}
 
 这会在当前目录下创建一个 `myblog` 目录，里面包含一个示例的网站
 
-> 注意：
-> ```
-> Dependency Error: Yikes! It looks like you don't have bundler or one of its dependencies installed. In order to use Jekyll as currently configured, you'll need to install this gem. The full error message from Ruby is: 'cannot load such file -- bundler' If you run into trouble, you can find helpful resources at http://jekyllrb.com/help/!
-> ```
-> 缺少bundler包，执行 `gem install bundler` 命令安装
+注意：
+{% highlight shell %}
+Dependency Error: Yikes! It looks like you don't have bundler or one of its dependencies installed. In order to use Jekyll as currently configured, you'll need to install this gem. The full error message from Ruby is: 'cannot load such file -- bundler' If you run into trouble, you can find helpful resources at http://jekyllrb.com/help/!
+{% endhighlight %}
+缺少bundler包，执行 `gem install bundler` 命令安装
 
 切换到 `myblog` 目录下，构建刚刚生成的网站
 
-```
+{% highlight shell %}
 $ cd myblog
 $ jekyll build 
-```
+{% endhighlight %}
 
 默认会将网站生成到 `./_site` 目录下，生成目录可以通过配置文件 `./_config.yml`
 或命令行参数 `--destination` 设置  
 
 然后，将网站运行起来，在本地进行预览  
 
-```
+{% highlight shell %}
 $ jekyll server
-```
+{% endhighlight %}
 
 然后可以在浏览器中 `http://127.0.0.1:4000` 来访问，显示如下界面
 
@@ -94,7 +96,7 @@ $ jekyll server
 `./_posts` 目录用来放置博文，文件名称格式为 `<date>-<title>.<extension>`，
 文件内容如下：
 
-```
+{% highlight Markdown %}
 ---
 layout: post
 title:  "Welcome to Jekyll!"
@@ -107,16 +109,18 @@ To add new posts, simply add a file in the `_posts` directory that follows the c
 
 Jekyll also offers powerful support for code snippets:
 
+{% raw %}
 {% highlight ruby %}
 def print_hi(name)
   puts "Hi, #{name}"
 end
 print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
+#=prints 'Hi, Tom' to STDOUT.
 {% endhighlight %}
+{% endraw %}
 
 Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
-```
+{% endhighlight %}
 
 文件开头由 `---` 包含的部分被称为“头信息”，设置一些文档的相关属性：
 
@@ -135,13 +139,13 @@ Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most ou
 其实为了方便重复利用模板， Jekyll提供了主题功能，可以在 `./_config.yml` 
 中看到如下配置：
 
-```yaml
+{% highlight yaml %}
 theme: minima
-```
+{% endhighlight %}
 
 主题实际上是一个gem包，可以通过 `bundle show minima` 查看主题包所在的位置：
 
-```
+{% highlight shell %}
 $ budnle show minima
 ~/.gem/ruby/gems/minima-2.0.0
 
@@ -152,7 +156,7 @@ assets  _includes  _layouts  LICENSE.txt  README.md  _sass
 $ cd _layouts
 $ ls
 default.html  home.html  page.html  post.html
-```
+{% endhighlight %}
 
 可以看到主题目录下的 `_layouts` 目录里有 `post.html` 模板文件，
 这个就是上述博文所用的模板文件，当然，我们也可以在自己的 `./_layouts` 目录下
@@ -160,7 +164,8 @@ default.html  home.html  page.html  post.html
   
 先来看一下这个模板文件的内容：
 
-```
+{% highlight Liquid %}
+{% raw %}
 ---
 layout: default
 ---
@@ -180,7 +185,8 @@ layout: default
     {% include disqus_comments.html %}
   {% endif %}
 </article>
-```
+{% endraw %}
+{% endhighlight %}
 
 同样，头信息部分 `layout` 指示模板文件，可以看出post模板之上还有一个网站的默认模板，
 然后，模板中有各种 `{{ var | filter }}` 标签，Jekyll 使用 Liquid 模板引擎，
@@ -196,7 +202,7 @@ layout: default
 之前的Welcome博文头信息中并没有配置 `author` 属性，现在我们来配置一下，
 修改 `./_posts/2016-10-21-welcome-to-jekyll.markdown` 头信息：
 
-```
+{% highlight yaml %}
 ---
 layout: post
 title:  "Welcome to Jekyll!"
@@ -204,11 +210,11 @@ date:   2016-10-21 00:43:30 -0700
 categories: jekyll update
 author: baiyangcao
 ---
-```
+{% endhighlight %}
 
-> 注意：  
-> 执行了 `jekyll server` 命令启动预览网站之后，
-> 修改了的博文可以自动重新生成，而不用重新启动网站。
+注意：  
+执行了 `jekyll server` 命令启动预览网站之后，
+修改了的博文可以自动重新生成，而不用重新启动网站。
 
 然后再打开博文看一下效果，显示出来了文章作者：
 
@@ -237,5 +243,5 @@ author: baiyangcao
 官方 Github 仓库的 Wiki 页面中有个[主题](https://github.com/jekyll/jekyll/wiki/Themes)
 列表，大家有兴趣可以看一下。
 
-> 参考链接：  
-> <http://jekyllcn.com/docs/home/>
+参考链接：  
+<http://jekyllcn.com/docs/home/>

@@ -2,7 +2,11 @@
 layout: blog
 ---
 
-<link rel="stylesheet" type="text/css" href="{{ site.url }}/stylesheets/syntax.css">
+{% if page.syntax %}
+    <link rel="stylesheet" type="text/css" href="{{ site.url }}/stylesheets/syntax/syntax.{{ page.syntax }}.css">
+{% else %}
+    <link rel="stylesheet" type="text/css" href="{{ site.url }}/stylesheets/syntax.css">
+{% endif %}
 
 <ol class="breadcrumb">
     <li><a href="{{ site.url }}">首页</a></li>

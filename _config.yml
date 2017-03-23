@@ -8,5 +8,5 @@ host: localhost
 
 highlighter: rouge
 
-gems: [jekyll-paginate]
+gems: [jekyll-paginate, jekyll-sitemap]
 paginate: 5

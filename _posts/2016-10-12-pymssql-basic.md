@@ -16,7 +16,7 @@ pymssql连接数据库的方式和使用sqlite的方式基本相同：
  - `cursor.executeXXX`方法执行SQL语句，`cursor.fetchXXX`获取查询结果等
  - 调用`close`方法关闭游标`cursor`和数据库连接
 
-```
+{% highlight Python %}
 import pymssql
 
 # server    数据库服务器名称或IP
@@ -59,7 +59,7 @@ while row:
 
 # 关闭连接
 conn.close()
-```
+{% endhighlight %}
 
 > **注意**: 例子中查询操作的参数使用的`%s`而不是`'%s'`，**若参数值是字符串**，在执行语句时会自动添加单引号
 
@@ -67,7 +67,7 @@ conn.close()
 
 一个连接一次只能有一个游标的查询处于活跃状态，如下：
 
-```
+{% highlight Python %}
 c1 = conn.cursor()
 c1.execute('SELECT * FROM persons')
 
@@ -79,20 +79,20 @@ print( c1.fetchall() )  # 显示出的是c2游标查询出来的结果
 
 print( "John Doe" )
 print( c2.fetchall() )  # 不会有任何结果
-```
+{% endhighlight %}
 
 为了避免上述的问题可以使用以下两种方式：
 
  - 创建多个连接来保证多个查询可以并行执行在不同连接的游标上
  - 使用`fetchall`方法获取到游标查询结果之后再执行下一个查询， 如下：
 
-```
+{% highlight Python %}
 c1.execute('SELECT ...')
 c1_list = c1.fetchall()
 
 c2.execute('SELECT ...')
 c2_list = c2.fetchall()
-```
+{% endhighlight %}
 
 ## 游标返回行为字典变量
 
@@ -100,7 +100,7 @@ c2_list = c2.fetchall()
 可以通过在创建游标时指定`as_dict`参数来使游标返回字典变量，
 字典中的键为数据表的列名
 
-```
+{% highlight Python %}
 conn = pymssql.connect(server, user, password, database)
 cursor = conn.cursor(as_dict=True)
 
@@ -109,25 +109,25 @@ for row in cursor:
     print("ID=%d, Name=%s" % (row['id'], row['name']))
 
 conn.close()
-```
+{% endhighlight %}
 
 ## 使用`with`语句（上下文管理器）
 
 可以通过使用`with`语句来省去显示的调用`close`方法关闭连接和游标
 
-```
+{% highlight Python %}
 with pymssql.connect(server, user, password, database) as conn:
     with conn.cursor(as_dict=True) as cursor:
         cursor.execute('SELECT * FROM persons WHERE salesrep=%s', 'John Doe')
         for row in cursor:
             print("ID=%d, Name=%s" % (row['id'], row['name']))
-```
+{% endhighlight %}
 
 ## 调用存储过程
 
 **pymssql 2.0.0**以上的版本可以通过`cursor.callproc`方法来调用存储过程
 
-```
+{% highlight Python %}
 with pymssql.connect(server, user, password, database) as conn:
     with conn.cursor(as_dict=True) as cursor:
         # 创建存储过程
@@ -143,6 +143,6 @@ with pymssql.connect(server, user, password, database) as conn:
         cursor.callproc('FindPerson', ('Jane Doe',))
         for row in cursor:
             print("ID=%d, Name=%s" % (row['id'], row['name']))
-```
+{% endhighlight %}
 
 > 参考连接： <http://pymssql.org/en/stable/pymssql_examples.html>

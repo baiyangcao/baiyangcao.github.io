@@ -13,13 +13,13 @@ layout: blog
 <nav aria-label="Page navigation">
   <ul class="pagination">
   {% if paginator.previous_page %}
-    <li>
+    <li class="previous">
       <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
   {% else %}
-    <li class="disabled">
+    <li class="previous disabled">
       <a href="#" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
@@ -37,13 +37,13 @@ layout: blog
   {% endfor %}
 
   {% if paginator.next_page %}
-    <li>
+    <li class="next">
       <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
   {% else %}
-    <li class="disabled">
+    <li class="next disabled">
       <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>

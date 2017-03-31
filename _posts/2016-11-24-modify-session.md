@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 修改数据库`连接数`,`游标数`
+title: 修改数据库连接数,游标数
 date: 2016-11-24
 categories: Notes
 tags: Oracle

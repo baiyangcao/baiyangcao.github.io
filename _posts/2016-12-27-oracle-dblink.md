@@ -6,7 +6,7 @@ categories: Notes
 tags: Oracle
 ---
 
- 1. 创建数据库连接
+ - 创建数据库连接
 
 ```
 CREATE [PUBLIC] DATABASE LINK {link name}
@@ -18,7 +18,7 @@ USING {connection string/tns name}
 或者是在`tnsname.ora`中配置的服务命名对应的连接字符串，如：
 `(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.0.78)(PORT = 1521)) ) (CONNECT_DATA = (SERVICE_NAME = orcl) ) )`
 
- 2. 使用数据库连接：
+ - 使用数据库连接：
 
  数据库连接的使用很简单，只要在远程对象名之后添加`@数据库连接名`即可，
  如要从远程数据库`GT`的`BASP_DX`用户下获取`JSYDSYQ`表的数据，可使用如下语句：
@@ -27,13 +27,13 @@ USING {connection string/tns name}
  SELECT * FROM BASP_DX.JSYDSYQ@GT;
  ```
 
- 3. 删除数据库连接：
+ - 删除数据库连接：
 
 ```
 DROP PUBLIC DATABASE LINK {link name}
 ```
 
- 4. global_names
+ - `global_names`
  
  如果数据库参数global_names设置为true，则必须数据库连接的名称{link name}
  必须与远程数据库GLOBAL_NAME相同。  

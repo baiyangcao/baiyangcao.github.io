@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 分析代码
+title: SonarQube分析代码
 date: 2016-12-16
 categories: Notes
 tags: SonarQube

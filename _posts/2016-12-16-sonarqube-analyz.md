@@ -41,7 +41,8 @@ SonarQube Scanner是SonarQube一个用来分析项目代码的通用分析器，
  #----- Default SonarQube server
  sonar.host.url=http://localhost:9000
  ```
- 5. 检查安装是否成功，linux下执行sonar-runner -h，windows下执行sonar-runner.bat -h，输出如下：
+ 5. 检查安装是否成功，linux下执行sonar-runner -h，windows下执行sonar-runner.bat -h，输出如下：  
+
  ```
  usage: sonar-runner [options]
   
@@ -212,4 +213,4 @@ MSBuild.SonarQube.Runner.exe /v:1.0 /n:"My project" /k:my.project /d:sonar.host.
 在"SonarQube Scanner for MSBuild - Begin Analysis"节点中配置的项和在命令行中需要的参数是一致的，"Project Key"，"Project name"和"Project version"为必填项，另可以添加其他命令行参数，如下：
 ![Jenkins_Configure_SonarQube Scanner for MSBuild - Begin Analysis.png]({{ site.url }}/images/sonarqube_analyz_code/Jenkins_Configure_SonarQube Scanner for MSBuild - Begin Analysis.png)
 
-"Build a Visual Studio project or solution using MSBuild"节点配置详见[Jenkins与.NET](../jenkins/01 installtion.md#_4)
+"Build a Visual Studio project or solution using MSBuild"节点配置详见[Jenkins与.NET]({% post_url 2017-02-09-jenkins-dotnet %})

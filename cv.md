@@ -77,7 +77,7 @@ layout: cv
 
 <div class="alert alert-warning" style="margin-left: 20px">沈阳移动办公平台</div>
 
-> Visual Studio 2013 + .NET 4.0 + Oracle 11g
+> Visual Studio 2013 + .NET 4.0 + Oracle 11g R2
 
 基于电子政务平台的用户及公文系统，开发移动办公平台，用于局领导的日常公文处理及各项咨询的管理，
 并包括图形端模块用于空间数据的浏览，主要工作如下：
@@ -100,7 +100,7 @@ layout: cv
 
 <div class="alert alert-warning" style="margin-left: 20px">基础数据提报系统</div>
 
-> Visual Studio 2013 + ASP.NET Web API 2 | Arcpy + Flask
+> Visual Studio 2015 + ASP.NET Web API 2 | Arcpy + Flask
 
 **独立开发**，用于将“一张图”数据库中的数据按照指定的目录格式导出，需要导出的有 Word表单、
 Excel 统计报表、附件、以及后期用于数据交互的 json 数据，使用前后端分离的方式进行开发，
@@ -109,6 +109,18 @@ Excel 统计报表、附件、以及后期用于数据交互的 json 数据，�
 导出的目录结构及数据格式皆根据 Xml 文件来进行配置，可以实现 Word、Excel模板导出，
 调用外部服务导出，PDF 文件的合并，及图片合成为 PDF等，并且通过 Arcpy 接口导出空间 GIS 数据，
 并使用 Flask 创建图形导出服务供调用
+
+<div class="alert alert-warning" style="margin-left: 20px">不动产统一登记平台</div>
+
+> Visual Studio 2013 + .NET 4.0 + Oracle 11g R2
+
+不动产统一登记平台主要是用于土地、房屋、草原、林地、海域等不动产的统一发证管理等，
+该平台由总公司提供，主要的工作内容是在其上进行二次开发，包括流程、表单的绘制，
+并在其中添加相应的 JScript（与JavaScript类似） 脚本；另外，在项目初期进行了数据迁移，
+使用开源 ETL 工具 Kettel 抽取“一张图”土地数据到不动产库；并且，在过渡期，
+利用 DataBase Link 访问中间库，编写存储过程将土地数据推送到与房产之间的中间库，
+供房产系统使用，以及房产数据抽取回不动产系统，再者，使用触发器调用存储过程保证数据的实时同步，
+使用 job 设置定时任务
 
 # 教育经历
 

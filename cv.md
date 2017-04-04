@@ -100,14 +100,15 @@ layout: cv
 
 <div class="alert alert-warning" style="margin-left: 20px">基础数据提报系统</div>
 
-> Visual Studio 2013 + ASP.NET Web API 2
+> Visual Studio 2013 + ASP.NET Web API 2 | Arcpy + Flask
 
 **独立开发**，用于将“一张图”数据库中的数据按照指定的目录格式导出，需要导出的有 Word表单、
 Excel 统计报表、附件、以及后期用于数据交互的 json 数据，使用前后端分离的方式进行开发，
 前端在电子政务平台中添加 WebForm 用于调用后台数据导出接口，后端使用 ASP.NET Web API 技术
 进行开发，并在前端发起请求后验证请求，在验证通过后调用新的线程进行异步导出操作，
 导出的目录结构及数据格式皆根据 Xml 文件来进行配置，可以实现 Word、Excel模板导出，
-调用外部服务导出，PDF 文件的合并，及图片合成为 PDF等
+调用外部服务导出，PDF 文件的合并，及图片合成为 PDF等，并且通过 Arcpy 接口导出空间 GIS 数据，
+并使用 Flask 创建图形导出服务供调用
 
 # 教育经历
 

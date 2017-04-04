@@ -42,15 +42,10 @@ layout: cv
   
 在该公司主要负责沈阳“一张图”电子政务平台相关功能模块的开发和维护功能，以及后期不动产统一登记平台相关的开发。
 
-<div class="alert alert-info" style="margin-left: 20px">沈阳“一张图”电子政务平台</div>
-
  - 维护MSSQL+ASP.NET开发的业务审批及OA系统，利用UCML工作流引擎完成相关新流程的开发及现有流程的维护
  - 开发WebService后台服务接口为移动办公APP提供后台服务，并基于Oracle+ASP.NET+jQuery EasyUI开发后台数据管理系统
  - 使用ASP.NET Web API技术开发数据导出接口，在现有系统中嵌入数据导出模块
  - 维护基于ArcGIS API For Flex开发的图形端程序  
-  
-<div class="alert alert-info" style="margin-left: 20px">不动产统一登记平台</div>
-
  - 利用ETL工具Kettel抽取“一张图”数据[SQL Server]到不动产登记平台[Oracle]
  - 基于不动产平台开发相关的流程及表单
  - Oracle数据库中制作触发器、存储过程、数据库连接用于与中间库数据之间的交互
@@ -109,6 +104,13 @@ Excel 统计报表、附件、以及后期用于数据交互的 json 数据，�
 导出的目录结构及数据格式皆根据 Xml 文件来进行配置，可以实现 Word、Excel模板导出，
 调用外部服务导出，PDF 文件的合并，及图片合成为 PDF等，并且通过 Arcpy 接口导出空间 GIS 数据，
 并使用 Flask 创建图形导出服务供调用
+
+<div class="alert alert-warning" style="margin-left: 20px">葫芦岛水源地保护系统</div>
+
+> Visual Studio 2015 + ASP.NET MVC + ArcGIS API For Flex
+
+**独立开发** 基于 ASP.NET MVC 实现基本的用户、部门、权限管理，并内嵌 Flex 图形端用于图形的展示，
+根据“一张图”的图形端进行移植，定制开发界址点、界桩等水源地相关的查询功能等
 
 <div class="alert alert-warning" style="margin-left: 20px">不动产统一登记平台</div>
 

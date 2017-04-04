@@ -95,7 +95,7 @@ layout: cv
 
 <div class="alert alert-warning" style="margin-left: 20px">基础数据提报系统</div>
 
-> Visual Studio 2015 + ASP.NET Web API 2 | Arcpy + Flask
+> Visual Studio 2015 + ASP.NET Web API 2 & Arcpy + Flask
 
 **独立开发**，用于将“一张图”数据库中的数据按照指定的目录格式导出，需要导出的有 Word表单、
 Excel 统计报表、附件、以及后期用于数据交互的 json 数据，使用前后端分离的方式进行开发，

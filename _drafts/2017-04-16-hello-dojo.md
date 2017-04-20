@@ -42,7 +42,7 @@ Dojo 是一个由 Dojo 基金会开发的 Javascript 工具包，
 <body>
     <h1 id="greeting">Hello</h1>
     <!-- load Dojo -->
-    <script src="https://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"
+    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"
             data-dojo-config="async: true"></script>
 
     <script>

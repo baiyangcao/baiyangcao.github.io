@@ -58,6 +58,9 @@ Dojo 是一个由 Dojo 基金会开发的 Javascript 工具包，
 </html>
 ```
 
+> 注： 加载 `dojo.js` 时用的地址以 `//` 开头，而没有相应的协议名称，如 `http:`，
+> 这表示这个脚本使用和当前页面相同的协议加载
+
 首先，`require` 函数传入了两个参数，第一个是要加载的模块名称数组，
 第二个是模块加载完成之后的回调函数，
   
@@ -73,3 +76,81 @@ Dojo 是一个由 Dojo 基金会开发的 Javascript 工具包，
 最后在回调函数中，调用 `dom.byId` 获取 `id='greeting'` 的 DOM 节点，
 与 `document.getElementById` 类似，然后使用 `domConstruct.place` 
 方法在 `greeting` 节点后面添加一个 `em` 节点
+
+## 自定义 AMD 模块
+
+定义自己的模块可以通过 `define` 函数，定义自己的模块，
+首先要保证 HTML 文件是从 HTTP 服务器加载的，因为有些浏览器的安全策略对 
+`file:///` 协议有很多限制。一个模块其实就是一个 js 文件，如下：
+
+```javascript
+define([
+    // 列出当前模块所依赖的模块
+    'dojo/dom'
+], function(dom){
+    var oldText = {};
+
+    // 模块加载时的返回值
+    return {
+        setText: function (id, text) {
+            var node = dom.byId(id);
+            oldText[id] = node.innerHTML;
+            node.innerHTML = text;
+        },
+
+        restoreText: function (id) {
+            var node = dom.byId(id);
+            node.innerHTML = oldText[id];
+            delete oldText[id];
+        }
+    };
+});
+```
+
+将这个文件保存在 `当前目录/demo/myModule.js` 文件中，
+`define` 和 `require` 参数相同，一个模块 ID 数组和一个回调函数，
+`define` 回调函数的返回值将会作为引入模块时对应的模块值。
+蓝后，我们来调用我们刚刚定义的模块， 在当前目录添加如下 html 文件
+  
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Tutorial: Hello Dojo!</title>
+</head>
+<body>
+    <h1 id="greeting">Hello</h1>
+    <!-- 配置 Dojo -->
+    <script>
+        // 在加载 dojo.js 之前添加 dojoConfig 变量用于配置 dojo
+        // 其效果与在 script 标签上添加 data-dojo-config 属性一样
+        var dojoConfig = {
+            async: true,
+            // 注册 demo 包的位置，确保能正确加载自定义模块
+            packages: [{
+                name: "demo",
+                location: location.pathname.replace(/\/[^/]*$/, '') + '/demo'
+            }]
+        };
+    </script>
+    <!-- 加载 Dojo -->
+    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"></script>
+
+    <script>
+        require([
+            'demo/myModule'
+        ], function (myModule) {
+            myModule.setText('greeting', 'Hello Dojo!');
+
+            setTimeout(function () {
+                myModule.restoreText('greeting');
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
+```
+
+如上代码引入 `demo/myModule` 模块，模块返回值复制给 myModule，
+并调用函数 `setText` 与 `restoreText` 设置标题文本

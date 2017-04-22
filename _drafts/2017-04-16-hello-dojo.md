@@ -154,3 +154,45 @@ define([
 
 如上代码引入 `demo/myModule` 模块，模块返回值复制给 myModule，
 并调用函数 `setText` 与 `restoreText` 设置标题文本
+
+## 等待 DOM 加载完成
+
+一般在开发 Web 程序中，我们需要等待页面 DOM 元素加载完成之后再执行代码，
+可以通过一种特殊 AMD 模块实现 —— “插件”，插件的引用方式与其他模块一样，
+只不过会在模块标识符的最后加上感叹号(!)，Dojo 提供了 `dom/domReady` 插件，
+用于实现 `document.ready` 事件，在 `rquire` 或 `define` 中引用插件，
+而后回调函数就会在 DOM 加载完成之后执行
+
+```javascript
+require([
+    'dojo/dom',
+    'dojo/domReady!'
+], function (dom) {
+    var greeting = dom.byId('greeting');
+    greeting.innerHTML += ' from Dojo!';
+});
+```
+
+> 注：`dojo/domReady!` 后面的感叹号是必须的！！！
+
+当然，如果我们把代码块放到了 `body` 的最下方加载，就不用使用 `dom/Ready!`插件了。
+对于 `dom/Ready` 模块，我们并没有用到其返回值，所以，这里将其放到了模块列表的最后，
+也没有在回调函数的参数列表中添加相应的引用，对于其他不需要使用返回值的模块也需要这样处理。
+
+## 使用本地 Dojo 源
+
+之前的例子使用的都是 CDN 来加载 Dojo，同样我们可以引用本地的 Dojo 源，
+不过需要稍稍修改一下 dojo 的配置，来引入 dojo 的各个包
+
+```javascript
+var dojoConfig = {
+    async: true,
+    baseUrl: '.',
+    packages: [
+        'dojo',
+        'dijit',
+        'dojox',
+        'demo'
+    ]
+};
+```

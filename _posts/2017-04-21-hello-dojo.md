@@ -32,7 +32,7 @@ Dojo 是一个由 Dojo 基金会开发的 Javascript 工具包，
 和 `define`，前者用于引入模块，后者用于定义新的模块，
 让我们荡起双桨...啊呸，让我们先从引用模块做起
 
-```html
+{% highlight html %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,7 +56,7 @@ Dojo 是一个由 Dojo 基金会开发的 Javascript 工具包，
     </script>
 </body>
 </html>
-```
+{% endhighlight %}
 
 > 注： 加载 `dojo.js` 时用的地址以 `//` 开头，而没有相应的协议名称，如 `http:`，
 > 这表示这个脚本使用和当前页面相同的协议加载
@@ -83,7 +83,7 @@ Dojo 是一个由 Dojo 基金会开发的 Javascript 工具包，
 首先要保证 HTML 文件是从 HTTP 服务器加载的，因为有些浏览器的安全策略对 
 `file:///` 协议有很多限制。一个模块其实就是一个 js 文件，如下：
 
-```javascript
+{% highlight javascript %}
 define([
     // 列出当前模块所依赖的模块
     'dojo/dom'
@@ -105,14 +105,14 @@ define([
         }
     };
 });
-```
+{% endhighlight %}
 
 将这个文件保存在 `当前目录/demo/myModule.js` 文件中，
 `define` 和 `require` 参数相同，一个模块 ID 数组和一个回调函数，
 `define` 回调函数的返回值将会作为引入模块时对应的模块值。
 蓝后，我们来调用我们刚刚定义的模块， 在当前目录添加如下 html 文件
   
-```html
+{% highlight html %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -150,7 +150,7 @@ define([
     </script>
 </body>
 </html>
-```
+{% endhighlight %}
 
 如上代码引入 `demo/myModule` 模块，模块返回值复制给 myModule，
 并调用函数 `setText` 与 `restoreText` 设置标题文本
@@ -163,7 +163,7 @@ define([
 用于实现 `document.ready` 事件，在 `rquire` 或 `define` 中引用插件，
 而后回调函数就会在 DOM 加载完成之后执行
 
-```javascript
+{% highlight javascript %}
 require([
     'dojo/dom',
     'dojo/domReady!'
@@ -171,7 +171,7 @@ require([
     var greeting = dom.byId('greeting');
     greeting.innerHTML += ' from Dojo!';
 });
-```
+{% endhighlight %}
 
 > 注：`dojo/domReady!` 后面的感叹号是必须的！！！
 
@@ -184,7 +184,7 @@ require([
 之前的例子使用的都是 CDN 来加载 Dojo，同样我们可以引用本地的 Dojo 源，
 不过需要稍稍修改一下 dojo 的配置，来引入 dojo 的各个包
 
-```javascript
+{% highlight javascript %}
 var dojoConfig = {
     async: true,
     baseUrl: '.',
@@ -195,4 +195,4 @@ var dojoConfig = {
         'demo'
     ]
 };
-```
+{% endhighlight %}

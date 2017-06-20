@@ -1,7 +1,7 @@
 ---
 layout: post
 title: kotlin 协程基础
-date: 2017-05-28
+date: 2017-06-20
 categories: Notes
 tags: [Kotlin]
 ---
@@ -23,3 +23,31 @@ dependencies {
     compile 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.16'
 }
 ```
+
+## 小试协程
+
+所谓协程，就是一种轻量级的线程，下面来看一个例子：
+
+```kotlin
+fun main(args: Array<String>) {
+    launch(CommonPool) {
+        delay(1000L)
+        println("World!")
+    }
+
+    print("Hello ")
+    Thread.sleep(2000L)
+}
+```
+
+上述代码会先打印出 `Hello ` 然后停顿 1 秒左右打印出 `World!`  
+  
+这里，`fun main` 执行时会新建一个线程（主线程），
+然后 `launch(CommonPool)` 语句创建一个协程（子协程），
+接着主线程继续执行 `print("Hello ")` 语句，
+同时子协程中执行 `delay(1000L)` 等待 1 秒，
+此时主线程执行 `Thread.sleep(2000L)` 阻塞，休眠 2 秒，
+子协程等待结束后打印 `World!` ，最后主线程阻塞结束，主线程结束。
+
+> 注：上述例子如果将 `Thread.sleep` 不是 2 秒，而是 0.5 秒，则会导致主线程提前退出
+> 子协程还没有执行到输出语句就结束了，最终只会输出 `Hello `

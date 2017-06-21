@@ -62,3 +62,41 @@ fun main(args: Array<String>) {
 结果就只会输出 `Hello `，而不会输出 `World!`，因为主线程阻塞 0.5 秒，然后主线程就结束了，
 而子协程中的执行延迟了 1 秒，子协程中的延迟并不会阻塞到主线程，并且在主线程结束时，
 所有的子协程也都会结束，所以最终只会输出 `Hello `。
+  
+## 阻塞与非阻塞
+
+在上面的例子中，`Thread.sleep` 会阻塞主线程，而非阻塞函数 `delay` 只会延迟协程的执行，
+对主线程不会造成影响，此外，
+`delay` 这种 *suspending function*（暂定为挂起函数） 只能用在协程中而不能用在线程中，
+挂起函数使用关键字 `suspend fun` 定义，如 `delay` 的定义为：
+
+```kotlin
+suspend fun delay( ... ) { ... }
+```
+
+对于只能使用非阻塞函数的情况，可以选择将主线程转换为“主协程”，如上述例子可以转换为：
+
+```kotlin
+fun main(args: Array<String>) = runBlocking<Unit> {
+    launch(CommonPool) {
+        delay(1000L)
+        println("World!")
+    }
+
+    print("Hello ")
+    delay(2000L)
+}
+```
+
+这里的 `runBlocking {}` 就是用来创建顶层主协程的，这样就可以在 `main` 函数里面调用挂起函数了，
+当然并非只有 `main` 函数可以这样用，所有的函数都可以这样使用，
+如用在给挂起函数编写单元测试时：
+
+```kotlin
+class MyTest {
+    @Test
+    fun testMySuspendingFunction() = runBlocking<Unit> {
+        // ...
+    }
+}
+```

@@ -100,3 +100,27 @@ class MyTest {
     }
 }
 ```
+
+## 等待协程完成
+
+上面的例子中，我们都指定了协程的大概执行时间，然后在主线程/协程中指定稍长的时间，
+来确保子协程可以正确完成，但是如果我们不知道子协程执行的时间又该如何？
+
+```kotlin
+fun main(args:Array<String>) = runBlocking<Unit> {
+    var job = launch(CommonPool) {
+        delay(1000L)
+        println("World!")
+    }
+
+    print("Hello ")
+    job.join()
+}
+```
+
+`lanuch(CommonPool)` 返回一个 `Job` 对象，表示子协程中执行的任务，
+这里调用 `Job.join` 方法来延迟主协程，使主协程在子协程完成之前处于挂起状态，
+这样不用知道子协程的执行时间也可以保证子协程结束之后再结束主协程
+
+> 注：`Job.join` 方法是挂起函数，只能在协程中调用，
+> 所以上例中使用了 `runBlocking<Unit>` 来创建主协程

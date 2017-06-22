@@ -124,3 +124,26 @@ fun main(args:Array<String>) = runBlocking<Unit> {
 
 > 注：`Job.join` 方法是挂起函数，只能在协程中调用，
 > 所以上例中使用了 `runBlocking<Unit>` 来创建主协程
+
+## 创建挂起函数
+
+*suspending function* 只能在协程中调用，或者由另一个挂起函数调用，
+我们可以为上述协程中的代码创建一个单独的挂起函数，如：
+
+```kotlin
+fun main(args: Array<String>) = runBlocking<Unit> {
+    var job = launch(CommonPool) {
+        doWorld()
+    }
+
+    print("Hello ")
+    job.join()
+}
+
+suspend fun doWorld() {
+    delay(1000L)
+    println("World!")
+}
+```
+
+挂起函数在协程中调用与普通函数一致，只不过在挂起函数中可以调用其他的挂起函数

@@ -39,3 +39,49 @@ main: Now I can quit.
 ```
 
 上述例子，在 `main` 函数中调用 `Job.cancel` 方法来结束子协程的运行。
+
+
+## 取消操作应具有交互性
+
+协程的取消应该具有交互性，即应该在协程中处理协程被取消的情况，
+在 `kotlinx.coroutines` 库中的挂起函数都是可取消的，
+函数中会检查协程的取消并在协程取消时抛出 `CancellationException` 异常。
+但是，如果协程正处在循环计算中并且没有检查是否取消了协程，
+则 `job.cancel` 方法无法取消协程的执行，如下：
+
+```kotlin
+fun main(args: Array<String>) = runBlocking<Unit> {
+    val job = launch(CommonPool) {
+        var nextPrintTime = 0L
+        var i = 0
+        while (i < 10) { // 循环运算
+            val currentTime = System.currentTimeMillis()
+            if (currentTime >= nextPrintTime) {
+                println("I'm sleeping ${i++} ...")
+                nextPrintTime = currentTime + 500L
+            }
+        }
+    }
+    delay(1300L)
+    println("main: I'm tired of waiting!")
+    job.cancel()
+    delay(1300L)
+    println("main: Now I can quit.")
+}
+```
+
+输出结果如下：
+
+```shell
+I'm sleeping 0 ...
+I'm sleeping 1 ...
+I'm sleeping 2 ...
+main: I'm tired of waiting!
+I'm sleeping 3 ...
+I'm sleeping 4 ...
+I'm sleeping 5 ...
+main: Now I'm quit!
+```
+
+可以看出，子协程在调用 `job.cancel` 方法后并没有停止执行，
+而是在 `main` 函数执行结束时才退出

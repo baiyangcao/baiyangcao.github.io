@@ -85,3 +85,39 @@ main: Now I'm quit!
 
 可以看出，子协程在调用 `job.cancel` 方法后并没有停止执行，
 而是在 `main` 函数执行结束时才退出
+
+## 取消循环运算代码
+
+有两种办法可以用来解决上述问题：
+
+ - 周期性的调用挂起函数，如使用 `yield` 函数
+ - 显式的检查协程的运行状态
+
+这里我们尝试一下第二种方法，在上述例子中使用 `while(isActive)` 
+来替换 `while(i < 10)`
+
+```kotlin
+...
+while (isActive) { // cancellable computation loop
+    val currentTime = System.currentTimeMillis()
+    if (currentTime >= nextPrintTime) {
+        println("I'm sleeping ${i++} ...")
+        nextPrintTime = currentTime + 500L
+    }
+}
+...
+```
+
+输出结果如下：
+
+```shell
+I'm sleeping 0 ...
+I'm sleeping 1 ...
+I'm sleeping 2 ...
+main: I'm tired of waiting!
+main: Now I'm quit!
+```
+
+这里我们可以看到 `job.cancel` 方法成功的结束了协程，
+`isActive` 属性属于 `CoroutineScope` 接口，
+可以在协程代码中访问，用来表示协程的运行状态。

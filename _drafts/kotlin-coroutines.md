@@ -121,3 +121,41 @@ main: Now I'm quit!
 这里我们可以看到 `job.cancel` 方法成功的结束了协程，
 `isActive` 属性属于 `CoroutineScope` 接口，
 可以在协程代码中访问，用来表示协程的运行状态。
+
+## 使用 finally 关闭资源
+
+`kotlinx.coroutine` 库中的挂起函数在取消时，
+都会抛出 `CancellationException` 异常，
+这个异常可以通过正常的 `try ... catch ... finally` 语句处理，
+或者对于 `use` 函数，在协程取消时，也可以正常的执行其终止操作
+
+```kotlin
+fun main(args: Array<String>) = runBlocking<Unit> {
+    val job = launch(CommonPool) {
+        try {
+            repeat(1000) { i ->
+                println("I'm sleeping $i ...")
+                delay(500L)
+            }
+        } finally {
+            println("I'm running finally")
+        }
+    }
+    delay(1300L) // delay a bit
+    println("main: I'm tired of waiting!")
+    job.cancel() // cancels the job
+    delay(1300L) // delay a bit to ensure it was cancelled indeed
+    println("main: Now I can quit.")
+}
+```
+
+输出如下：
+
+```shell
+I'm sleeping 0 ...
+I'm sleeping 1 ...
+I'm sleeping 2 ...
+main: I'm tired of waiting!
+I'm running finally
+main: Now I can quit.
+```

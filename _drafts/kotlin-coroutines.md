@@ -159,3 +159,36 @@ main: I'm tired of waiting!
 I'm running finally
 main: Now I can quit.
 ```
+
+##  执行不可取消代码块
+
+如果在上述例子中的 `finally` 块中执行挂起函数，会导致新的
+`CancellationException` 异常抛出，毕竟执行这块代码的协程已经处于取消状态了，
+正常情况下，在 `finally` 块中执行的关闭操作都应该是非阻塞函数
+（如关闭文件、取消任务或者关闭各种通信通道）；
+但在某些特殊情况下我们需要在取消的协程中执行挂起函数，
+我们可以使用 `run` 函数与 `NonCancellable` 上下文包裹所需执行的代码块：
+
+```kotlin
+fun main(args: Array<String>) = runBlocking<Unit> {
+    val job = launch(CommonPool) {
+        try {
+            repeat(1000) { i ->
+                println("I'm sleeping $i ...")
+                delay(500L)
+            }
+        } finally {
+            run(NonCancellable) {
+                println("I'm running finally")
+                delay(1000L)
+                println("And I've just delayed for 1 sec because I'm non-cancellable")
+            }
+        }
+    }
+    delay(1300L) // delay a bit
+    println("main: I'm tired of waiting!")
+    job.cancel() // cancels the job
+    delay(1300L) // delay a bit to ensure it was cancelled indeed
+    println("main: Now I can quit.")
+}
+```

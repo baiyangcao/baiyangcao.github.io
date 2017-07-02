@@ -192,3 +192,42 @@ fun main(args: Array<String>) = runBlocking<Unit> {
     println("main: Now I can quit.")
 }
 ```
+
+## 超时
+
+实际操作中取消协程的最常见原因就是协程执行超时，
+即协程的执行时间超过了设定的超时时间，根据上面学习的内容，
+我们可以通过检查协程执行的时间，然后调用 `Job` 相应的方法来取消协程的执行，
+不过，`kotlinx.coroutine` 库中提供了一个封装好的函数 `withTimeout`
+
+```kotlin
+fun main(args: Array<String>) = runBlocking<Unit> {
+    withTimeout(1300L) {
+        repeat(1000) { i ->
+            println("I'm sleeping $i ...")
+            delay(500L)
+        }
+    }
+}
+```
+
+输出结果如下：
+
+```shell
+I'm sleeping 0 ...
+I'm sleeping 1 ...
+I'm sleeping 2 ...
+Exception in thread "main" kotlinx.coroutines.experimental.TimeoutException: Timed out waiting for 1300 MILLISECONDS
+```
+
+上例输出中我们可以看出，在协程执行超时 `withTimeout` 函数抛出了
+`TimeoutException`，超时异常是 `CancellationException` 的一个私有子类，
+在之前取消协程执行，抛出 `CancellationException` 异常的例子中，
+并没有在控制台输出中看到错误堆栈的信息，但是这次超时异常中却出现了，
+这是因为之前在协程中抛出 `CancellationException` 异常可以看做是
+协程完成的正常原因，而上例中直接在 `main` 函数中调用 `withTimeout` 函数，
+而不是在协程中，所以其抛出的异常就会输出在控制台中。
+  
+由于取消操作只是抛出了异常，所以所有的资源都会以正常的方式被关闭，
+我们可以将 `withTimeout` 代码放在 `try ... catch(e: CancellationException) ...`
+中，这样就可以在协程超时之后做一些相应的处理，如记录日志等。

@@ -231,3 +231,11 @@ Exception in thread "main" kotlinx.coroutines.experimental.TimeoutException: Tim
 由于取消操作只是抛出了异常，所以所有的资源都会以正常的方式被关闭，
 我们可以将 `withTimeout` 代码放在 `try ... catch(e: CancellationException) ...`
 中，这样就可以在协程超时之后做一些相应的处理，如记录日志等。
+
+## 总结
+
+ - 可以调用 `job.cancel` 方法来取消协程的执行，但循环计算代码不会被取消
+ - `kotlinx.coroutine` 库中的挂起函数在协程被取消时会抛出 `CancellationException` 异常
+ - 在协程中可以根据 `isActive` 属性来判断协程运行状态，来结束不能正常取消的循环代码
+ - `run(NonCancellable)` 函数可以用来执行不会被取消的代码块
+ - `withTimeout` 函数可以用来执行指定超时时间的协程

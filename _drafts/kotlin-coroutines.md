@@ -239,3 +239,7 @@ Exception in thread "main" kotlinx.coroutines.experimental.TimeoutException: Tim
  - 在协程中可以根据 `isActive` 属性来判断协程运行状态，来结束不能正常取消的循环代码
  - `run(NonCancellable)` 函数可以用来执行不会被取消的代码块
  - `withTimeout` 函数可以用来执行指定超时时间的协程
+
+ > 参考链接  
+ >  
+ > <https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#cancellation-and-timeouts>

@@ -157,3 +157,7 @@ suspend fun doWorld() {
  主线程结束之后，子协程也直接结束了
 
  - 挂起函数只能由别的挂起函数调用，或者用在协程中，不可以直接在线程中使用
+
+> 参考链接：  
+>   
+> <https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#coroutine-basics>

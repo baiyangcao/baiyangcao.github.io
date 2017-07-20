@@ -54,4 +54,7 @@ commit;
 严格模式的设置主要是对于 SQL 语句的执行方式，是否在事务中执行 SQL 语句，一般单独语句的执行都默认使用非事务方式执行
 
 > 参考链接：  
-> <https://dev.mysql.com/doc/refman/5.7/en/sql-mode.html#sql-mode-strict>
+> <https://dev.mysql.com/doc/refman/5.7/en/sql-mode.html#sql-mode-strict>  
+> <http://blog.sina.com.cn/s/blog_53b13d950100x2ok.html>  
+> <http://www.2cto.com/database/201207/139809.html>  
+> <https://my.oschina.net/wojibuzhu/blog/511104>

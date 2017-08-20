@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "taskName": "Format to Rouge",
+            "type": "shell",
+            "command": "python ${workspaceRoot}/_posts/blogformatter.py -f ${file} -t rouge",
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher":"$gcc"
+        },
+        {
+            "taskName": "Format to Markdown",
+            "type": "shell",
+            "command": "python ${workspaceRoot}/_posts/blogformatter.py -f ${file} -t markdown",
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher":"$gcc"
+        }
+    ]
+}

@@ -14,7 +14,7 @@ tags: [Kotlin]
 但在大型、长时间运行的程序中，我们就需要更细致的控制协程的生命周期，
 `launch` 函数返回的 `Job` 对象可以用来取消运行中的协程：
 
-```kotlin
+{% highlight kotlin %}
 fun main(args: Array<String>) = runBlocking<Unit> {
     val job = launch(CommonPool) {
         repeat(1000) { i ->
@@ -28,17 +28,17 @@ fun main(args: Array<String>) = runBlocking<Unit> {
     delay(1300L) // delay a bit to ensure it was cancelled indeed
     println("main: Now I can quit.")
 }
-```
+{% endhighlight %}
 
 输出结果如下：
 
-```shell
+{% highlight shell %}
 I'm sleeping 0 ...
 I'm sleeping 1 ...
 I'm sleeping 2 ...
 main: I'm tired of waiting!
 main: Now I can quit.
-```
+{% endhighlight %}
 
 上述例子，在 `main` 函数中调用 `Job.cancel` 方法来结束子协程的运行。
 
@@ -51,7 +51,7 @@ main: Now I can quit.
 但是，如果协程正处在循环计算中并且没有检查是否取消了协程，
 则 `job.cancel` 方法无法取消协程的执行，如下：
 
-```kotlin
+{% highlight kotlin %}
 fun main(args: Array<String>) = runBlocking<Unit> {
     val job = launch(CommonPool) {
         var nextPrintTime = 0L
@@ -70,11 +70,11 @@ fun main(args: Array<String>) = runBlocking<Unit> {
     delay(1300L)
     println("main: Now I can quit.")
 }
-```
+{% endhighlight %}
 
 输出结果如下：
 
-```shell
+{% highlight shell %}
 I'm sleeping 0 ...
 I'm sleeping 1 ...
 I'm sleeping 2 ...
@@ -83,7 +83,7 @@ I'm sleeping 3 ...
 I'm sleeping 4 ...
 I'm sleeping 5 ...
 main: Now I'm quit!
-```
+{% endhighlight %}
 
 可以看出，子协程在调用 `job.cancel` 方法后并没有停止执行，
 而是在 `main` 函数执行结束时才退出
@@ -98,7 +98,7 @@ main: Now I'm quit!
 这里我们尝试一下第二种方法，在上述例子中使用 `while(isActive)` 
 来替换 `while(i < 10)`
 
-```kotlin
+{% highlight kotlin %}
 ...
 while (isActive) { // cancellable computation loop
     val currentTime = System.currentTimeMillis()
@@ -108,17 +108,17 @@ while (isActive) { // cancellable computation loop
     }
 }
 ...
-```
+{% endhighlight %}
 
 输出结果如下：
 
-```shell
+{% highlight shell %}
 I'm sleeping 0 ...
 I'm sleeping 1 ...
 I'm sleeping 2 ...
 main: I'm tired of waiting!
 main: Now I'm quit!
-```
+{% endhighlight %}
 
 这里我们可以看到 `job.cancel` 方法成功的结束了协程，
 `isActive` 属性属于 `CoroutineScope` 接口，
@@ -131,7 +131,7 @@ main: Now I'm quit!
 这个异常可以通过正常的 `try ... catch ... finally` 语句处理，
 或者对于 `use` 函数，在协程取消时，也可以正常的执行其终止操作
 
-```kotlin
+{% highlight kotlin %}
 fun main(args: Array<String>) = runBlocking<Unit> {
     val job = launch(CommonPool) {
         try {
@@ -149,18 +149,18 @@ fun main(args: Array<String>) = runBlocking<Unit> {
     delay(1300L) // delay a bit to ensure it was cancelled indeed
     println("main: Now I can quit.")
 }
-```
+{% endhighlight %}
 
 输出如下：
 
-```shell
+{% highlight shell %}
 I'm sleeping 0 ...
 I'm sleeping 1 ...
 I'm sleeping 2 ...
 main: I'm tired of waiting!
 I'm running finally
 main: Now I can quit.
-```
+{% endhighlight %}
 
 ##  执行不可取消代码块
 
@@ -171,7 +171,7 @@ main: Now I can quit.
 但在某些特殊情况下我们需要在取消的协程中执行挂起函数，
 我们可以使用 `run` 函数与 `NonCancellable` 上下文包裹所需执行的代码块：
 
-```kotlin
+{% highlight kotlin %}
 fun main(args: Array<String>) = runBlocking<Unit> {
     val job = launch(CommonPool) {
         try {
@@ -193,7 +193,7 @@ fun main(args: Array<String>) = runBlocking<Unit> {
     delay(1300L) // delay a bit to ensure it was cancelled indeed
     println("main: Now I can quit.")
 }
-```
+{% endhighlight %}
 
 ## 超时
 
@@ -202,7 +202,7 @@ fun main(args: Array<String>) = runBlocking<Unit> {
 我们可以通过检查协程执行的时间，然后调用 `Job` 相应的方法来取消协程的执行，
 不过，`kotlinx.coroutine` 库中提供了一个封装好的函数 `withTimeout`
 
-```kotlin
+{% highlight kotlin %}
 fun main(args: Array<String>) = runBlocking<Unit> {
     withTimeout(1300L) {
         repeat(1000) { i ->
@@ -211,16 +211,16 @@ fun main(args: Array<String>) = runBlocking<Unit> {
         }
     }
 }
-```
+{% endhighlight %}
 
 输出结果如下：
 
-```shell
+{% highlight shell %}
 I'm sleeping 0 ...
 I'm sleeping 1 ...
 I'm sleeping 2 ...
 Exception in thread "main" kotlinx.coroutines.experimental.TimeoutException: Timed out waiting for 1300 MILLISECONDS
-```
+{% endhighlight %}
 
 上例输出中我们可以看出，在协程执行超时 `withTimeout` 函数抛出了
 `TimeoutException`，超时异常是 `CancellationException` 的一个私有子类，

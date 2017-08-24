@@ -11,7 +11,7 @@ tags: [python]
 结果在调用的时候，始终调用的是父类的方法而不是子类重载的方法，
 如下例：
 
-```python
+{% highlight python %}
 class A():
     def __init__(self):
         print(self.__get_name())
@@ -25,7 +25,7 @@ class B(A):
 
 if __name__ == "__main__":
     b = B() # 输出为 "A"
-```
+{% endhighlight %}
 
 上例中初始化时应该调用 B 中的 __get_name 方法，却调用了父类 A 中的 __get_name 方法，
 后来才幡然醒悟，私有方法只能在类内部使用，对于父类是不可见的，
@@ -36,7 +36,7 @@ if __name__ == "__main__":
 单下划线开头的方法 `_xxx` 相当于其他语言的 `protected` 方法，
 仅继承链上的类中可见。
 
-```python
+{% highlight python %}
 class A():
     def __init__(self):
         print(self.__get_name())
@@ -50,7 +50,7 @@ class B(A):
 
 if __name__ == "__main__":
     b = B() # 输出为 "B"
-```
+{% endhighlight %}
 
 > 参考链接：  
 >   

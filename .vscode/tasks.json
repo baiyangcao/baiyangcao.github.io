@@ -36,6 +36,18 @@
                 "panel": "shared"
             },
             "problemMatcher":"$gcc"
+        },
+        {
+            "taskName": "Publish to Cnblog",
+            "type": "shell",
+            "command": "python ${workspaceRoot}/_posts/blogpublisher.py -f ${file} -t cnblog",
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher":"$gcc"
         }
     ]
 }
